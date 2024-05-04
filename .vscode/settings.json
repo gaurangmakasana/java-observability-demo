@@ -1,0 +1,7 @@
+{
+    "java.jdt.ls.java.home": "C:/Program Files/OpenJDK/jdk-21.0.2",
+    "concourse.ls.java.home": "C:/Program Files/OpenJDK/jdk-21.0.2",
+    "maven.terminal.useJavaHome": true,
+    "spring-boot.ls.java.home": "C:/Program Files/OpenJDK/jdk-21.0.2",
+    "java.configuration.updateBuildConfiguration": "interactive"
+}

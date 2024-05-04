@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "SpringOtelMicrometerWebService2",
+            "request": "launch",
+            "mainClass": "com.example.gaurang.SpringOtelMicrometerWebService2",
+            "projectName": "webservice2"
+        },
+        {
+            "type": "java",
+            "name": "SpringOtelMicrometerWebService1",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.gaurang.SpringOtelMicrometerWebService1",
+            "projectName": "webservice1",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=63216 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=webservice1"
+        }
+    ]
+}
