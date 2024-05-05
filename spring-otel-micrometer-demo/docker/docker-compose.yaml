@@ -1,5 +1,33 @@
 version: "3"
 services:
+  webservice1:
+    image: webservice1
+    volumes:
+      # Log files. They are all also accessible to the agent container,
+      # through docker volume mount
+      - ./logs/webservice1.log:/tmp/webservice1.log
+      - ./logs/webservice1_tomcat_access.log:/tmp/webservice1_tomcat_access.log
+    environment:
+      # Tracing configuration
+      CUSTOMIZE_GREETING_SERVICE: http://webservice2:8081/customizegreeting?
+      MANAGEMENT_OTLP_METRICS_EXPORT_URL: http://otel-collector:4318/v1/metrics
+    ports:
+      - "8080:8080"
+
+  webservice2:
+    image: webservice2
+    volumes:
+      # Log files. They are all also accessible to the agent container,
+      # through docker volume mount
+      - ./logs/webservice2.log:/tmp/webservice2.log
+      - ./logs/webservice2_tomcat_access.log:/tmp/webservice2_tomcat_access.log
+    environment:
+      # Tracing configuration
+      CUSTOMIZE_GREETING_SERVICE: http://webservice2:8081/customizegreeting?
+      MANAGEMENT_OTLP_METRICS_EXPORT_URL: http://otel-collector:4318/v1/metrics
+    ports:
+      - "8081:8081"
+
   otel-collector:   
     image: otel/opentelemetry-collector
     container_name: otel-collector
@@ -52,5 +80,3 @@ services:
       - "3000:3000"
     depends_on:
       - prometheus
-      
-   
