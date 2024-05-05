@@ -1,0 +1,9 @@
+scrape_configs:
+  - job_name: 'WebService1'
+    metrics_path: '/metrics'
+    scrape_interval: 3s
+    static_configs:
+      - targets: ['otel-collector:8889']
+        labels:
+          application: 'WebService1 Application'
+  

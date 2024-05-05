@@ -1,0 +1,45 @@
+spring:
+    application:
+        name:
+            spring-otel-micrometer-demo-webservice1
+
+server:
+    port: 8080
+
+
+#OTLP Config to send metrics to Collector
+management:
+    endpoints:
+        web:
+            exposure:
+                #include: [ "prometheus", "health" ,"info" ] #disabling prometheus actuator endpoint to validate Micrometer is pushing metrics to collector
+                include: [ "health" ,"info" ]
+
+    otlp:
+        metrics:
+            export:
+                url: 
+                    http://localhost:4318/v1/metrics
+
+    metrics:
+        distribution:
+            percentiles-histogram: 
+                histogram:
+                    http:
+                        server:
+                            requests:
+                                true
+    
+    opentelemetry:
+        resource-attributes:
+            cluster:
+                local
+            servicename:
+                webservice1
+            
+
+#Custom Application Specific Properties
+customize:
+    greeting:
+        service:
+            http://localhost:8081/customizegreeting?
